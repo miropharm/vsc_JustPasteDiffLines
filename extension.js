@@ -214,6 +214,7 @@ class DiffViewProvider {
     });
     $('btnClear').addEventListener('click', () => {
       $('diffInput').value = '';
+      vscode.postMessage({ command: 'resetPreview' });
     });
     $('diffInput').addEventListener('paste', () => {
       setTimeout(() => {
