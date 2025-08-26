@@ -37,16 +37,17 @@ Then hit **Preview** → see the diff → **Apply** to patch your file.
 This is the basic usage: the lines starting with - are removed, and the lines starting with + are added/replaced.
 Only lines starting with + or - are considered; other lines are ignored.
 
+
 2️⃣ Optional usage (@@ for cursor reset):
 
+```diff
 @@
 -console.log("foo");
 +console.log("bar");
-
 @@
 -oldVar = 5;
 +oldVar = 10;
-
+```
 
 Each @@ line resets the search, so the next - or + line is looked for from the start of the file again.
 It is recommended to place @@ before each block for more reliability when applying multiple code blocks at once
