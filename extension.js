@@ -77,7 +77,11 @@ class DiffViewProvider {
             switch (message.command) {
                 case 'apply':
                     this._lastDiffText = message.text ?? '';
-                    vscode.commands.executeCommand('diffView.applyPatch');
+                    vscode.commands.executeCommand('diffView.applyPatch').then(() => {
+                        if (message.autoClear) {
+                            this._view?.webview.postMessage({ command: 'clearInput' });
+                        }
+                    });
                     break;
                 case 'preview':
                     this._lastDiffText = message.text ?? '';
@@ -107,7 +111,7 @@ class DiffViewProvider {
     padding: 0;
     height: 100%;
     width: 100%;
-    overflow: hidden; /* dış scrollbar tamamen gizlenir */
+    overflow: hidden;
     font-family: var(--vscode-font-family);
   }
   .wrap {
@@ -176,6 +180,12 @@ class DiffViewProvider {
       <button id="btnApply">Apply</button>
       <button id="btnReset">Reset</button>
       <button id="btnClose">Close</button>
+      <button id="btnPaste">Paste</button>
+      <button id="btnClear">Clear</button>
+      <label>
+        <input type="checkbox" id="chkAutoClear" checked />
+        Auto Clear after Apply
+      </label>
     </div>
   </div>
   <script>
@@ -185,7 +195,7 @@ class DiffViewProvider {
       vscode.postMessage({ command: 'preview', text: $('diffInput').value });
     });
     $('btnApply').addEventListener('click', () => {
-      vscode.postMessage({ command: 'apply', text: $('diffInput').value });
+      vscode.postMessage({ command: 'apply', text: $('diffInput').value, autoClear: $('chkAutoClear').checked });
     });
     $('btnReset').addEventListener('click', () => {
       vscode.postMessage({ command: 'resetPreview' });
@@ -193,12 +203,29 @@ class DiffViewProvider {
     $('btnClose').addEventListener('click', () => {
       vscode.postMessage({ command: 'closePreview' });
     });
-    // Otomatik preview: sadece kullanıcı diff yapıştırınca
+    $('btnPaste').addEventListener('click', async () => {
+      try {
+        const text = await navigator.clipboard.readText();
+        $('diffInput').value = text;
+        vscode.postMessage({ command: 'preview', text });
+      } catch (err) {
+        console.error('Clipboard read failed', err);
+      }
+    });
+    $('btnClear').addEventListener('click', () => {
+      $('diffInput').value = '';
+    });
     $('diffInput').addEventListener('paste', () => {
       setTimeout(() => {
         vscode.postMessage({ command: 'preview', text: $('diffInput').value });
-      }, 50); // paste input'a işlensin diye küçük delay
-    }); 
+      }, 50);
+    });
+    window.addEventListener('message', event => {
+      const msg = event.data;
+      if (msg.command === 'clearInput') {
+        $('diffInput').value = '';
+      }
+    });
   </script>
 </body>
 </html>`;
