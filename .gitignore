@@ -1,0 +1,13 @@
+# Derleme çıktıları
+*.exe
+*.dll
+*.o
+
+# Geçici dosyalar
+*.log
+*.tmp
+*.mhtml
+
+# Klasör dosyası gizleme
+.packs/*.txt
+
