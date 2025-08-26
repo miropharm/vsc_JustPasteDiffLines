@@ -349,7 +349,9 @@ function applyPatchCustom(originalText, diffText) {
     const ops = parseSimpleDiff(diffText || '');
     let cursor = 0;
     for (const op of ops) {
-        if (op.type === 'replace') {
+        if (op.type === 'resetCursor') {
+            cursor = 0;
+        } else if (op.type === 'replace') {
             let pos = indexOfLine(lines, op.old, cursor);
             if (pos === -1) pos = indexOfLine(lines, op.old, 0);
             if (pos !== -1) {
@@ -381,7 +383,9 @@ function parseSimpleDiff(diffText) {
     const ops = [];
     for (let i = 0; i < raw.length; i++) {
         const s = raw[i];
-        if (s.startsWith('-')) {
+        if (s.startsWith('@@')) {
+            ops.push({ type: 'resetCursor' });
+        } else if (s.startsWith('-')) {
             const oldLine = s.slice(1);
             if (i + 1 < raw.length && raw[i + 1].startsWith('+')) {
                 const newLine = raw[i + 1].slice(1);
