@@ -48,12 +48,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/miropharm/vsc_JustPasteDiffLines"
+    "url": "https://github.com/muvusoft/vsc_JustPasteDiffLines"
   },
   "bugs": {
-    "url": "https://github.com/miropharm/vsc_JustPasteDiffLines/issues"
+    "url": "https://github.com/muvusoft/vsc_JustPasteDiffLines/issues"
   },
-  "homepage": "https://github.com/miropharm/vsc_JustPasteDiffLines",
+  "homepage": "https://github.com/muvusoft/vsc_JustPasteDiffLines",
   "scripts": {},
   "icon": "media/icon.png"
 }
