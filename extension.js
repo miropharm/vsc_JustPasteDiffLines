@@ -178,10 +178,10 @@ class DiffViewProvider {
     <div class="controls">
       <button id="btnPreview">Preview</button>
       <button id="btnApply">Apply</button>
-      <button id="btnReset">Reset</button>
-      <button id="btnClose">Close</button>
       <button id="btnPaste">Paste</button>
       <button id="btnClear">Clear</button>
+      <button id="btnReset">Reset</button>
+      <button id="btnClose">Close</button>
       <label>
         <input type="checkbox" id="chkAutoClear" checked />
         Auto Clear after Apply
