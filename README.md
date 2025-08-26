@@ -17,10 +17,13 @@ This extension is designed to make testing small patches fast and frictionless �
 - 🔨 **Apply changes instantly** – patch the active file with one click.  
 - ♻️ **Reset or close preview** – quickly discard or exit the diff view.  
 - 🎯 **Super lightweight** – no `git apply`, no patch headers, no extra setup.  
+- 🔁 Cursor reset (@@) – include a line starting with @@ to reset the search cursor to the top of the file; the next change will be applied starting from the beginning.
 
 ---
 
 ## 🖼️ Example
+
+1️⃣ Basic usage (normal diff):
 
 Paste this into the diff panel:
 
@@ -31,6 +34,23 @@ Paste this into the diff panel:
 
 Then hit **Preview** → see the diff → **Apply** to patch your file.  
 
+This is the basic usage: the lines starting with - are removed, and the lines starting with + are added/replaced.
+Only lines starting with + or - are considered; other lines are ignored.
+
+2️⃣ Optional usage (@@ for cursor reset):
+
+@@
+-console.log("foo");
++console.log("bar");
+
+@@
+-oldVar = 5;
++oldVar = 10;
+
+
+Each @@ line resets the search, so the next - or + line is looked for from the start of the file again.
+It is recommended to place @@ before each block for more reliability when applying multiple code blocks at once
+
 ---
 
 ## 🚀 How to Use
@@ -38,6 +58,7 @@ Then hit **Preview** → see the diff → **Apply** to patch your file.
 1. Copy any snippet that shows additions/removals.  
    - Example from a code review, StackOverflow answer, or an AI model (ChatGPT, Grok, Claude, etc.).  
    - Context lines or headers will be ignored unless they start with `+` or `-`.  
+   - Optional: Use @@ to reset the cursor for the next change if needed.
 
 2. Open the **Diff Tool** panel:  
    - Command Palette (`Ctrl+Shift+P`) → **Just Paste Diff: Open Panel**, or  
@@ -60,7 +81,7 @@ This extension makes it easy to apply them:
   -oldFunction();
   +newFunction();
   ```
-
+- Optional: Use @@ to reset the cursor so the next change is applied from the start of the file.
 - You can safely copy-paste the entire response; lines without `+` or `-` will be ignored automatically.  
 - Always **Preview** first to confirm correctness before applying.  
 

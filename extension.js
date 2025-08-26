@@ -121,8 +121,17 @@ class DiffViewProvider {
     padding: 8px;
     box-sizing: border-box;
   }
-  h3 { margin: 0; text-align: center; }
-  p { margin: .2rem 0 .8rem 0; opacity: .8; }
+  h3 {
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+    color: var(--vscode-tab-activeForeground);
+  }
+  p {
+   margin: .2rem 0 .8rem 0;
+   opacity: .8;
+   color: var(--vscode-descriptionForeground);
+   }
   #diffInput {
     flex: 1;
     width: 100%;
@@ -167,6 +176,9 @@ class DiffViewProvider {
   }
   .controls button:active {
     transform: translateY(0);
+  }
+  .controls label {
+    color: var(--vscode-tab-activeForeground);
   }
 </style>
 </head>
