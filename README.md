@@ -13,11 +13,11 @@ This extension is designed to make testing small patches fast and frictionless �
 ## ✨ Features
 
 - 📋 **Copy-paste friendly** – lines without a leading `+` or `-` are ignored, so you can paste raw snippets, forum posts, or AI outputs without cleanup.  
-- 👀 **Preview before apply** – always see the exact changes side-by-side before committing them.  
-- 🔨 **Apply changes instantly** – patch the active file with one click.  
+- 👀 **Preview before apply** – always see the exact changes side-by-side before committing them. Paste automatically activates preview. 
+- 🔨 **Apply changes instantly** – patch the active file with one click. Apply buttton automatically cleans text area to make it ready for the next paste.
 - ♻️ **Reset or close preview** – quickly discard or exit the diff view.  
-- 🎯 **Super lightweight** – no `git apply`, no patch headers, no extra setup.  
-- 🔁 Cursor reset (@@) – include a line starting with @@ to reset the search cursor to the top of the file; the next change will be applied starting from the beginning.
+- 🎯 **Super lightweight** – no `git apply`, no patch headers, no extra setup. No auto-save to stay in safe area. Manually save your file if everything is okay.
+- 🔁 **Cursor reset (@@)** – include a line starting with @@ to reset the search cursor to the top of the file; the next change will be applied starting from the beginning.
 
 ---
 
