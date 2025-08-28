@@ -1,6 +1,8 @@
 # Paket dosyaları
 .packs
+.packs/
 *.vsix
+*.txt
 
 # Node.js bağımlılıkları
 node_modules
