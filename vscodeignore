@@ -20,6 +20,10 @@ Thumbs.db
 # Geçici dosyalar
 *.tmp
 *.log
+.notes
+.notes/
+.notes/*.txt
+.notes/*.docx
 
 # Dosyalar
 Instructions for AI Assistant.md

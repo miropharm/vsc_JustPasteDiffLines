@@ -10,4 +10,7 @@
 
 # Klasör dosyası gizleme
 .packs/*.txt
-
+.notes
+.notes/
+.notes/*.txt
+.notes/*.docx
