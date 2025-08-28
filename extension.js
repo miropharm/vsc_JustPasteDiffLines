@@ -72,6 +72,14 @@ class DiffViewProvider {
             this._diffContentProvider.reset();
         });
 
+        webviewView.onDidChangeVisibility(() => {
+            if (!webviewView.visible) {
+                this._diffContentProvider.reset();
+                this.closePreview();
+            }
+        });
+
+
         webviewView.webview.onDidReceiveMessage(message => {
             if (!message) return;
             switch (message.command) {

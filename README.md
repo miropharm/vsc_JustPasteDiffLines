@@ -32,6 +32,15 @@ Paste this into the diff panel:
 +console.log("bar");
 ```
 
+To add new lines only, use the ‘Anchor Technique’: Start with (-) and (+) on the same existing line. 
+All following (+) lines will then be pasted directly **UNDER** that chosen 'Anchor Line' in your code.
+```diff
+-self.log.pack(fill="both", expand=True, padx=6, pady=6)
++self.log.pack(fill="both", expand=True, padx=6, pady=6)
++    # Backend.verbose_logs control
++self.backend.log_fn = lambda s: self._log(self.log, s)
+```
+
 Then hit **Preview** → see the diff → **Apply** to patch your file.  
 
 This is the basic usage: the lines starting with - are removed, and the lines starting with + are added/replaced.

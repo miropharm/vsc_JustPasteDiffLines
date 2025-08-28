@@ -1,6 +1,8 @@
-# Paket dosyaları
+# Paket
 .packs
 .packs/
+.vscode
+.vscode/
 *.vsix
 *.txt
 
